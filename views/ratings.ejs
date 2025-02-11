@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <title>Form Reviews</title>
+    <!-- css -->
+    <link rel="stylesheet" href="/css/ratings.css">
+    <link rel="stylesheet" href="/css/ratingStar.css">
+    <!-- logo -->
+    <%- include("./includes/logo.ejs") %>
+</head>
+<body>
+
+    <div class="wrapper">
+        <h3>Ratings & Reviews</h3>
+        <form action="/profile/ratings/<%= orderId %>" method="post">
+            <div class="imgDiv2">
+                <img src="/css/img/hot.png" alt="">
+            </div>
+            <% for(let i=0; i<ratingPageData.length; i++ ){ %>
+                <div id="rating-container">
+                    <label><%= ratingPageData[i].itemName %></label>
+                    <fieldset class="starability-checkmark">
+                        <input type="radio" id="no-rate" class="input-no-rate" name="ratings[<%= ratingPageData[i].id %>]" value="0" checked aria-label="No rating." />
+                        <input type="radio" id="<%= i %>-rate1" name="ratings[<%= ratingPageData[i].id %>]" value="1" />
+                        <label for="<%= i %>-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="<%= i %>-rate2" name="ratings[<%= ratingPageData[i].id %>]" value="2" />
+                        <label for="<%= i %>-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="<%= i %>-rate3" name="ratings[<%= ratingPageData[i].id %>]" value="3" />
+                        <label for="<%= i %>-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="<%= i %>-rate4" name="ratings[<%= ratingPageData[i].id %>]" value="4" />
+                        <label for="<%= i %>-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="<%= i %>-rate5" name="ratings[<%= ratingPageData[i].id %>]" value="5" />
+                        <label for="<%= i %>-rate5" title="Amazing">5 stars</label>
+                      </fieldset>
+                </div>
+            <% } %>
+            <div class="btn-group">
+                <button type="submit" class="btn submit">Submit</button>
+                <a href="/profile" class="btn cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

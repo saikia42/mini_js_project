@@ -1,0 +1,177 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    list-style: none;
+    text-decoration: none;
+    scroll-behavior: smooth;
+    scroll-padding-top: 3rem;
+
+}
+
+:root{
+    --main-color : #ff9f0d;
+    --text-color : #fff;
+    --other-color : #212121;
+    --second-color : #7c7c7c;
+    --bg-color : #111111;
+
+    --big-font : 4.5rem;
+    --h2-font : 1.3rem;
+    --p-font : .6rem;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.con{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 1rem;
+}
+.container{
+    background-color: #f4f1f1;
+    min-width: 30%;
+    max-width: 400px;
+    height: auto;
+    padding-bottom: 1rem;
+    border-radius: 1rem;
+
+}
+
+.back{
+    width: 100%;
+    height: auto;
+    padding-top: 1rem;
+}
+
+.back a{
+    font-size: 1.5rem;
+    color: var(--bg-color);
+}
+
+.box{
+    margin: 0 2rem;
+}
+
+.text{
+    display: flex;
+}
+
+.textDiv{
+    width: 100%;
+}
+
+.textDiv h2{
+    font-size: var(--h2-font);
+    margin: 0;
+}
+
+p{
+    font-size: var(--p-font);
+    color: var(--second-color);
+}
+
+b{
+    color: #111111;
+}
+
+.imgDiv{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.imgDiv img{
+    width: 50%;
+    height: auto;
+}
+
+form > div{
+    margin-bottom: 1rem;
+}
+
+form label{
+    font-size: 0.85rem;
+}
+
+form input{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+    background: transparent;
+    padding-left: 0;
+    &:focus {
+        background: transparent;
+        outline: none;
+    }
+}
+
+.inpGrp{
+    margin: .5rem 0;
+    display: flex;
+}
+
+#passLabel{
+    margin-top: 2rem;
+}
+
+.inpGrp > span{
+    display: flex;
+    align-items: center;
+}
+
+.btn{
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0.6rem;
+    background: var(--main-color);
+    opacity: 0.8;
+    transition: all .2s ease-in;
+
+    &:hover{
+        background: var(--main-color);
+        opacity: 1;
+    }
+}
+
+.signup{
+    margin: 0 2rem;
+}
+
+.signup a{
+    text-decoration: none;
+
+}
+
+@media (max-width : 460px){
+    body{
+        display: initial;
+    }
+    .imgDiv img{
+        width: 60%;
+    }
+    .box{
+        margin: 0 1.5rem;
+    }
+}
+
+@media (max-width : 415px){
+    .container{
+        margin: 2rem 1.5rem;
+    }
+
+    .box{
+        margin: 0 1rem;
+    }
+
+    .signup{
+        margin: 0 2rem;
+    }
+}    

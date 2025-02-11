@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Reservation Form</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/booking.css">
+        
+        <!-- logo -->
+        <%- include("./includes/logo.ejs") %>
+    </head>
+    <body>
+        
+        <section class = "banner">
+            <div class="banner-div">
+                <video class="video-background" autoplay muted loop>
+                    <source src="/css/video/intro1.mp4" type="video/mp4">
+                </video>
+                <div class="gradient-overlay"></div>
+                <h2>BOOK YOUR TABLE NOW</h2>
+            </div>
+            <div class = "card-container">
+                <div class = "card-img">
+                    <!-- image here -->
+                </div>
+
+                <div class = "card-content">
+                    <h3>Reservation</h3>
+                    <form>
+                        <div class = "form-row">
+                            <label for="date">Date:</label>
+                            <input type="date" id="date" name="date">
+                        </div>
+                        <div class="form-row">
+                            <label for="startTime">Start Time</label>
+                            <input type="time" id="startTime" name="startTime" value="00:00">
+                            <label for="endTime">End Time</label>
+                            <input type="time" id="endTime" name="endTime" value="00:00">
+                        </div>
+                        <div class="form-row">
+                            <label for="table">Available</label>
+                            <Select>
+                                <option value="">TABLE 1</option>
+                                <option value="">TABLE 2</option>
+                                <option value="">TABLE 3</option>
+                                <option value="">TABLE 4</option>
+                                <option value="">TABLE 5</option>
+                                <option value="">TABLE 6</option>
+                            </Select>
+                           
+                            <label for="people">People</label>
+                            <input type="number" id="people" name="people" min="1">
+                        </div>
+                        <div class="form-row1">
+                            <button type="submit" class="btn">Confirm</button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+    </body>
+</html>

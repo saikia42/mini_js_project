@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart</title>
+    <link rel="stylesheet" href="/css/cart.css">
+    <link rel="stylesheet" href="/css/radioBtnStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"/>
+
+    <!-- logo -->
+    <%- include("./includes/logo.ejs") %>
+</head>
+<body>
+    <section class="navbar">
+        <div class="logo">
+            <h2>The Grand Èclat</h2>
+        </div>
+        <div class="nav-btn">
+            <a href="/profile"><i class="fa-solid fa-user-large"></i><%= cusData.name %></a>
+        </div>
+    </section>
+    <% if(cart.length !=0){ %>
+    <section class="main">
+        <div class="address payment">
+            <h3><i class="fa-solid fa-utensils"></i>Select your table number</h3>
+            <div class="paymentFormCon">
+                <!-- <p>Currently we are not accepting orders. Website is under mainteinance. we will be available soon. Thank you.</p> -->
+                <!-- <form action="/payment/initiate_payment" method="post"> -->
+                <form action="/order" method="post">
+                    <select name="paymentOp" id="">
+                        <option value="onCash" selected>Cash</option>
+                        <option value="online">Online</option>
+                    </select>
+                    <div class="container">
+                        <div class="radio-tile-group">
+                            <% for(let i=1 ; i<6; i++) {%>
+                                <div class="input-container">
+                                    <input id="fly" type="radio" name="tableNo" value="<%= i %>" required>
+                                    <div class="radio-tile">
+                                        <img src="/css/img/tableLogo.png" alt="">
+                                        <label for="fly">Table <%= i %></label>
+                                    </div>
+                                </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    <button>Place Order</button>
+                </form>
+            </div>
+            <div class="acceptPaymetnBox">
+                <div class="accpetText">
+                    <!-- <p>We are now accepting</p> -->
+                    <p>Online payments are temporarily unavailable</p>
+                </div>
+                <div class="acceptLogo">
+                    <img src="/css/img/phonepe.png" alt="">
+                    <img src="/css/img/gpay.png" alt="">
+                    <img src="/css/img/paytm.png" alt="">
+                    <img src="/css/img/mastercard.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="cart">
+            <p><i class='bx bx-cart'></i>Cart Items</p>
+            <div class="">
+                <div class="cartItemContainer">
+                    <% for(item of cart) {%>
+                        <div class="cartItems">
+                            <div class="itemName">
+                                <% if(item.itemId.type == "Veg") {%>
+                                    <i class='bx bx-food-tag' style="color: green;"></i>
+                                <% }else{ %>
+                                    <i class='bx bx-food-tag' style="color: red;"></i>
+                                <% } %>
+                                <p><%= item.itemId.itemName %></p>
+                                <br>
+                                <p></p>
+                            </div>
+                            <div class="quantity">
+                                <div>
+                                    <div class="minBtn">
+                                        <form action="/cart/s/<%= cusData.id %>/<%= item._id %>?_method=PUT" method="post">
+                                            <button type="submit"><i class='bx bx-minus' ></i></button>
+                                        </form>
+                                    </div>
+                                    <h3><%= item.quantity %></h3>
+                                    <div class="plusBtn">
+                                        <form action="/cart/p/<%= cusData.id %>/<%= item._id %>?_method=PUT" method="post">
+                                            <button type="submit"><i class='bx bx-plus' ></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="itemPrice">
+                                <span class="actualPrice">&#8377;<%= item.quantity*item.itemId.price %></span>
+                                <p>&#8377;<%= Math.ceil(item.quantity*(item.itemId.price - item.itemId.price*(item.itemId.discount/100))) %></p>
+                            </div>
+                        </div>
+                    <% } %>
+                    <div class="billDetails">
+                        <p>Bill Details</p>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Item Total</td>
+                                    <td>&#8377;<%= calucalatedPrice.itemTotal %></td>
+                                </tr>
+                                <tr>
+                                    <td>After Discount</td>
+                                    <td>&#8377;<%= calucalatedPrice.afterDiscount %></td>
+                                </tr>
+                                <tr>
+                                    <td>Platform Fee</td>
+                                    <td>&#8377;<%= calucalatedPrice.platformFee %></td>
+                                </tr>
+                                <tr>
+                                    <td>S.G.S.T.</td>
+                                    <td>&#8377;<%= calucalatedPrice.sgst %></td>
+                                </tr>
+                                <tr>
+                                    <td>C.G.S.T.</td>
+                                    <td>&#8377;<%= calucalatedPrice.cgst %></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="total">
+                    <p>TO PAY</p>
+                    <p>&#8377;<%= calucalatedPrice.totalPay %></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <% }else{ %>
+        <section class="emptyCart">
+            <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0" alt="">
+            <h3>Your cart is empty</h3>
+            <p>You can go to menu page to view more items</p>
+            <a href="/menu">Explore Our Menu</a>
+        </section>
+    <% } %>
+</body>
+</html>
